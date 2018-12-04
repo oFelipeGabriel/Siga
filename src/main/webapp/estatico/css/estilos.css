@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
+
+
+body{
+    background-color: #1E3D58;
+    font-family: 'Ubuntu', sans-serif;
+}
+.conteudo{
+    display: block;
+    background-color: #e8eef1;
+    
+}
+.corpo{
+    position: absolute;
+    top:0;
+    width: 82%;
+    min-height: 100%;
+    margin-left: 18%;
+    background-color: #e8eef1;
+    font-family: 'Ubuntu', sans-serif;
+}
+.titulo{
+    display: block;
+    background-color: white;
+    margin: 1% 5%;
+    color: grey;
+    font-size: 25px;
+    text-align: center;
+    width: 90%;
+    border-radius: 25px;
+    margin-bottom: 5%;
+    padding: 10px 0;
+}
+.tabela{
+    margin-left: 5%;
+}
+.tabela td {
+    padding-top: 10px; 
+    padding-bottom:10px
+}
+.conteudoLogin{
+    width: 100%;
+    color: #e8eef1;
+}
+.imagemLogin{
+    float: left;
+    width: 50%;
+    font-size: 70px;
+    margin: 20% auto;
+    text-align: center;
+}
+.campoLogin{
+    float: left;
+    text-align: center;
+    width: 45%;
+    margin-top: 20%;
+    background-color: #1E3D58;
+    border-left:  2px solid gray;
+    font-size: 40px;
+}
+/* Menu */
+.menu{
+    position: absolute;
+    position: fixed;
+    height: 100%;
+    width: 20%;
+    top: 0;
+    left: 0;
+    background-color: #057dcd;
+}
+.menu ul{
+    padding: 10px 5px;;
+}
+.menu li{
+    padding: 10px 5px;
+    cursor: pointer;
+}
+.menu li:hover{
+    background-color: #e8eef1;
+}
+.menu li:hover a{
+    color: #057dcd;
+}
+.menu a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+/* Faltas */
+.tabelaFaltas, .conteudoDiaSemana{
+    text-align: center;
+}
+.tabelaFaltas{
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+.tabelaFaltas #thDisciplina{
+    text-align: left;
+}
+.tabelaFaltas .disciplinaFaltas{
+    width: 60%;
+    text-align: left;
+}
+/* Horarios */
+.diaSemana{
+    background-color: #057dcd;
+    padding: 10px 15px;
+    border-radius: 25px;
+    color: #e8eef1;
+}
+.conteudoDiaSemana{
+    margin: 10px 0 30px 0;
+}
+/* Historico */
+.divLegendaHist{
+    display: block;
+}
+#legendaHistorico{
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 25px;
+}
+#coresLegendaHistorico li{
+    display: inline;
+    float: left;
+    text-decoration: none;
+    margin: 10px 0px 30px 0;
+    padding: 5px 10px;
+}
+#aprovado,#naoCursado,#emCurso,#dispensado{border-top: 2px solid #1E3D58;border-bottom: 2px solid #1E3D58;}
+#aprovado{ background-color: #057dcd; border-radius: 10px 0 0 10px;}
+#naoCursado{ background-color: #ffe;}
+#emCurso{ background-color: #057dcd}
+#dispensado{ background-color: #1E3D58;border-radius: 0 10px 10px 0; color: #e8eef1}
+
+.tituloSemestre{
+    color: #1E3D58;
+    font-weight: bold;
+    margin-left: 10%;
+}
+.materiasHistorico{
+    display: block;
+    float: left;
+    background-color: #e8eef1;
+    font-family: 'Ubuntu', sans-serif;
+}
+.divSemestre{
+    display: inline-block;
+    width: 15%;
+    min-width: 150px;
+    vertical-align: top; /* here */
+}
+.materia{
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin: 5px 5px;
+    
+}
+.aprovado{ background-color: #057dcd;}
+.naoCursado{ background-color: #e8eef1;border: 2px solid #1E3D58}
+.emCurso{ background-color: #057dcd; color:#e8eef1;}
+.dispensado{ background-color: #1E3D58; color:#e8eef1;}
+
+/* Notas */
+.notasMateria{
+    margin-left: 10%;
+}
+.notasMateria p{
+    margin: 2px 0;
+}
+.notasMateria table{
+    margin-left: 20%;
+}
+.tituloProva{
+    width: 130px;
+    text-align: left;
+}
+/* Matricula */
+.divDiaHorarios{
+    margin: 5px 0;
+ }
+ .divDiaHorarios h4{
+     background-color: #1E3D58;
+     color: #e8eef1;
+     font-size: 15px;
+     margin: 0 10px;
+     padding: 5px 10px;
+     width: 15%;
+     text-align: center;
+ }
+.materiaHorario{
+    background-color: #057dcd;
+    margin: 10px 5%;
+    color: #e8eef1;
+    padding: 10px 10px;
+    width: 25%;
+}
