@@ -9,8 +9,13 @@ import DAO.AlunoServicoDAO;
 import DAO.CoordenadorDAO;
 import DAO.ProfessorDAO;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +39,8 @@ public class Inicio extends HttpServlet {
     ProfessorDAO pdao = new ProfessorDAO();
     CoordenadorDAO cdao = new CoordenadorDAO();
     ServletContext sc;
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
+    EntityManager em = emf.createEntityManager();
     
     
     
@@ -41,12 +48,34 @@ public class Inicio extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res){
         String usuario = req.getParameter("usuario");
         String senha = req.getParameter("senha");
-        
+        HttpSession sessao = req.getSession();
         //p = pdao.validarProfessor(usuario, senha);
         //a = adao.validarAluno(usuario, senha);
+         /*
+        Query query = em.createQuery("SELECT u FROM usuario u "); // WHERE u.nome='João' ");
+        List<Usuario> usuarios = query.getResultList();
+        System.out.println("Resultados: ");
+        for(Usuario ui: usuarios){
+            System.out.println("Nome: " + ui.getNome() + " Id: " + ui.getId() );
+        } 
+        */
         c = cdao.validarCoordenador(usuario, senha);
         sc = req.getServletContext();
-        HttpSession sessao = req.getSession();
+        //id,nome,email,cpf,data_nasc,data_matricula,data_formatura,matriculado,login,senha
+        Query query = em.createQuery("SELECT a FROM ALUNO a WHERE a.login='"+usuario+"' and a.senha='"+senha+"'", Aluno.class);
+        List<Aluno> alunos = query.getResultList();
+        for(Aluno a:alunos){
+                req.setAttribute("usuario", a);
+                try{
+                   sc.getRequestDispatcher("/dinamico/jsp/aluno/inicio.jsp").forward(req, res);
+                } catch (ServletException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+        }
+        
         // Verifica Aluno DAO
         /*if((a!=null)){
             if (adao.ok()!=false){
@@ -101,6 +130,7 @@ public class Inicio extends HttpServlet {
         
         } 
         }*/
+        /*
         if(c!=null || sessao.getAttribute("usuario")==null){
             if(c.getNome()!=null){
             if (cdao.ok()!=false){
@@ -128,7 +158,9 @@ public class Inicio extends HttpServlet {
         
         
         } 
+        
         }
+        
             else{
             req.setAttribute("FalhouLogin", "sim");
             try {
@@ -138,7 +170,7 @@ public class Inicio extends HttpServlet {
             } catch (IOException ex) {
                 Logger.getLogger(servlet.base.Inicio.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res){
