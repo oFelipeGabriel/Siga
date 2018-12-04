@@ -5,31 +5,31 @@
  */
 package modelo;
 
-/**
- *
- * @author felipe
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name="COORDENADOR")
 public class Coordenador {
-    private int re;
+    @Id
+    private int id;
+    @Column(name="nome")
     private String nome;
+    @Column(name="login")
     private String login;
+    @Column(name="senha")
     private String senha;
 
-    public Coordenador(int re, String nome, String login, String senha) {
-        this.re = re;
-        this.nome = nome;
-        this.login = login;
-        this.senha = senha;
+    public Coordenador() {   }
+
+    public int getId() {
+        return id;
     }
 
-    public int getRe() {
-        return re;
+    public void setId(int id) {
+        this.id = id;
     }
-
-    public void setRe(int re) {
-        this.re = re;
-    }
-
+    
     public String getNome() {
         return nome;
     }

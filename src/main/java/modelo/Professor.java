@@ -5,26 +5,52 @@
  */
 package modelo;
 
-public class Professor extends Usuario{
-    private int RE;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-    public Professor(int RE, String nome, String email, String login, String senha, String dataDeNascimento, Long cpf) {
-        super(nome, email, login, senha, dataDeNascimento, cpf);
-        this.RE = RE;
+@Entity(name="PROFESSOR")
+public class Professor{
+    @Id
+    private int id;
+    @Column(name="nome")
+    private String nome;
+    @Column(name="data_inicio")
+    private String data_inicio;
+    @Column(name="data_saida")
+    private String data_saida;
+    @Column(name="login")
+    private String login;
+    @Column(name="senha")
+    private String senha;
+
+    public Professor() { }
+
+    public int getId() {
+        return id;
     }
 
-    public Professor(int RE) {
-        this.RE = RE;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getRE() {
-        return RE;
+    public String getData_inicio() {
+        return data_inicio;
     }
 
-    public void setRE(int RE) {
-        this.RE = RE;
+    public void setData_inicio(String data_inicio) {
+        this.data_inicio = data_inicio;
     }
 
+    public String getData_saida() {
+        return data_saida;
+    }
+
+    public void setData_saida(String data_saida) {
+        this.data_saida = data_saida;
+    }
+    
+    
     public String getNome() {
         return nome;
     }
@@ -48,14 +74,6 @@ public class Professor extends Usuario{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public String getDataDeNascimento() {
-        return dataDeNascimento;
-    }
-
-    public void setDataDeNascimento(String dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
-    }
-    
+   
     
 }
