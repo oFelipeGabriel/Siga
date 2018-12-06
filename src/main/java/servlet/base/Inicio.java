@@ -43,34 +43,27 @@ public class Inicio extends HttpServlet {
         HttpSession sessao = req.getSession();
         sc = req.getServletContext();
         
+        if(sessao.getAttribute("usuario")==null){
         //Verifica Aluno
         query = em.createQuery("SELECT a FROM ALUNO a WHERE a.login='"+usuario+"' and a.senha='"+senha+"'", Aluno.class);
         List<Aluno> alunos = query.getResultList();
         for(Aluno a:alunos){
                 req.setAttribute("usuario", a);
-                try{
-                   sc.getRequestDispatcher("/dinamico/jsp/aluno/inicio.jsp").forward(req, res);
-                } catch (ServletException ex) {
-                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                sessao.setAttribute("usuario", a);
+                sessao.setAttribute("tipo", "1");
+                inicioAluno(req,res);
             
         }
         
-        // Verifica Professor DAO
+        // Verifica Professor 
         query = em.createQuery("SELECT p FROM PROFESSOR p WHERE p.login='"+usuario+"' and p.senha='"+senha+"'", Professor.class);
         List<Professor> professores = query.getResultList();
         if(professores.size()>0){
         for(Professor p:professores){
                 req.setAttribute("usuario", p);
-                try{
-                   sc.getRequestDispatcher("/dinamico/jsp/professor/inicioProfessor.jsp").forward(req, res);
-                } catch (ServletException ex) {
-                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                sessao.setAttribute("usuario", p);
+                sessao.setAttribute("tipo", "2");
+               inicioProfessor(req,res);
             
         }
         }
@@ -81,31 +74,67 @@ public class Inicio extends HttpServlet {
         if(coordenadores.size()>0){
         for(Coordenador c:coordenadores){
                 req.setAttribute("usuario", c);
-                try{
-                   sc.getRequestDispatcher("/dinamico/jsp/coordenador/inicioCoordenador.jsp").forward(req, res);
-                } catch (ServletException ex) {
-                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                sessao.setAttribute("usuario", c);
+                sessao.setAttribute("tipo", "3");
+                inicioCoordenador(req,res);
             
         }
+            }else{
+                req.setAttribute("FalhouLogin", "sim");
+                voltarLogin(req,res);
+            }
         }else{
-            req.setAttribute("FalhouLogin", "sim");
-                try {
+            Integer t = Integer.parseInt((String)sessao.getAttribute("tipo"));
+        switch(t){
+            case 1: inicioAluno(req,res);break;
+            case 2: inicioProfessor(req,res);break;
+            case 3: inicioCoordenador(req,res);
+        }
+            
+    }
+}
+    public void voltarLogin(HttpServletRequest req, HttpServletResponse res){
+        try {
                     sc.getRequestDispatcher("/dinamico/jsp/login.jsp").forward(req, res);
                 } catch (ServletException ex) {
                     Logger.getLogger(servlet.base.Inicio.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(servlet.base.Inicio.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        }
-        
-            
     }
+    public void inicioAluno(HttpServletRequest req, HttpServletResponse res){
+        try{
+            sc.getRequestDispatcher("/dinamico/jsp/aluno/inicio.jsp").forward(req, res);
+         } catch (ServletException ex) {
+             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }
+    public void inicioProfessor(HttpServletRequest req, HttpServletResponse res){
+         try{
+            sc.getRequestDispatcher("/dinamico/jsp/professor/inicioProfessor.jsp").forward(req, res);
+         } catch (ServletException ex) {
+             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }
+    public void inicioCoordenador(HttpServletRequest req, HttpServletResponse res){
+        try{
+            sc.getRequestDispatcher("/dinamico/jsp/coordenador/inicioCoordenador.jsp").forward(req, res);
+         } catch (ServletException ex) {
+             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res){
-        sc = req.getServletContext();
+        ServletContext sc = req.getServletContext();
+        HttpSession sessao = req.getSession();
+        if(sessao.getAttribute("usuario")==null){
         try {
                 sc.getRequestDispatcher("/dinamico/jsp/login.jsp").forward(req, res);
             } catch (ServletException ex) {
@@ -113,5 +142,16 @@ public class Inicio extends HttpServlet {
             } catch (IOException ex) {
                 Logger.getLogger(servlet.base.Inicio.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }else{
+            Integer t = Integer.parseInt((String)sessao.getAttribute("tipo"));
+            switch(t){
+                case 1:inicioAluno(req,res);break;
+                case 2:inicioProfessor(req,res);break;
+                case 3:inicioCoordenador(req,res);break;
+            }
+            
+        }
     }
+    
+
 }

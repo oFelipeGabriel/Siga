@@ -18,7 +18,7 @@
     <body>
         <%@include file= "menu.jsp" %>
         <% Aluno a = new Aluno();
-        a = (Aluno)request.getAttribute("usuario"); 
+        a = (Aluno)session.getAttribute("usuario"); 
         String[] dataNasc = a.getData_nasc().split("-");%>
         <div class="corpo">
         <span class="titulo">INÍCIO</span>

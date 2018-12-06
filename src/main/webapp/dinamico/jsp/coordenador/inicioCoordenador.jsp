@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modelo.Coordenador" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,14 +17,16 @@
         <%@include file= "menuCoordenador.jsp" %>
         <div class="corpo">
         <span class="titulo">Dados pessoais</span>
+        <% Coordenador c = new Coordenador();
+        c = (Coordenador)session.getAttribute("usuario"); %>
         <table class="tabela">
             <tr>
                 <td>Nome:</td>
-                <td><%= request.getAttribute("usuario")%></td>
+                <td><%= c.getNome()%></td>
             </tr>
             <tr>
                 <td>RE:</td>
-                <td><%= request.getAttribute("RE")%></td>
+                <td><%= c.getId()%></td>
             </tr>
         </table>  
         </div>

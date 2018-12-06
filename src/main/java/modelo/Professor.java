@@ -23,6 +23,8 @@ public class Professor{
     private String login;
     @Column(name="senha")
     private String senha;
+    @Column(name="contratado")
+    private int contratado;
 
     public Professor() { }
 
@@ -73,6 +75,14 @@ public class Professor{
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getContratado() {
+        return contratado;
+    }
+
+    public void setContratado(int contratado) {
+        this.contratado = contratado;
     }
    
     

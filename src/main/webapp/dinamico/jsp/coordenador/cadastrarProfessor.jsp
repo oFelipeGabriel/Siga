@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.Aluno" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,10 +15,16 @@
     </head>
     <body>
         <%@include file= "menuCoordenador.jsp" %>
-        <% Aluno a = (Aluno)request.getAttribute("aluno");%>
         <div class="corpo">
-            Nome: <%= a.getNome() %>
-            Login <%= a.getLogin() %>
+            <form action="professorCadastrado" method="POST">
+                <span>Nome: </span>
+                <input type="text" name="nome"><br/>
+                <span>Login: </span>
+                <input type="text" name="login"><br/>
+                <span>Senha: </span>
+                <input type="password" name="senha"><br/>
+                <input type="submit" value="enviar">
+            </form>
         </div>
         
     </body>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : cadastrarAluno
-    Created on : 30/11/2018, 17:15:01
-    Author     : felipe
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="modelo.Aluno" %>
 <!DOCTYPE html>
@@ -16,10 +10,11 @@
     </head>
     <body>
         <%@include file= "menuCoordenador.jsp" %>
-        <% Aluno a = (Aluno)request.getAttribute("aluno");%>
-        <div class="corpo">
-            Nome: <%= a.getNome() %>
-            Login <%= a.getLogin() %>
+        <% Aluno a = (Aluno)request.getAttibute("aluno"); %>
+        <div class="corpo">            
+            <h1><%= a.getNome() %></h1>
+            <h1><%= a.getEmail() %></h1>
+            <h1><%= a.getCpf() %></h1>
         </div>
         
     </body>

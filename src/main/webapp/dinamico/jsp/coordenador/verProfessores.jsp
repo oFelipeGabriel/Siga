@@ -5,7 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.Aluno" %>
+<%@page import="modelo.Professor" %>
+<%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,11 +17,19 @@
     </head>
     <body>
         <%@include file= "menuCoordenador.jsp" %>
-        <% Aluno a = (Aluno)request.getAttribute("aluno");%>
+        <% List<Professor> professores = (List<Professor>)request.getAttribute("professores"); %>
         <div class="corpo">
-            Nome: <%= a.getNome() %>
-            Login <%= a.getLogin() %>
+            <div class="listaProfessor">
+                <ul>
+                <%for(Professor p:professores){ %>            
+                    <li class="nomeProfessor">Nome: <%= p.getNome() %></li>
+                 <% } %>
+                </ul>
+            </div>
+           
+        
         </div>
+            
         
     </body>
 </html>

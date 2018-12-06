@@ -93,11 +93,67 @@
         <url-pattern>/coordenador/cadastrarAluno</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>cadastrarProfessor</servlet-name>
+        <servlet-class>servlet.coordenador.CadastrarProfessor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cadastrarProfessor</servlet-name>
+        <url-pattern>/coordenador/cadastrarProfessor</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>alunoCadastrado</servlet-name>
         <servlet-class>servlet.coordenador.AlunoCadastrado</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>alunoCadastrado</servlet-name>
         <url-pattern>/coordenador/alunoCadastrado</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>professorCadastrado</servlet-name>
+        <servlet-class>servlet.coordenador.ProfessorCadastrado</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>professorCadastrado</servlet-name>
+        <url-pattern>/coordenador/professorCadastrado</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>verProfessores</servlet-name>
+        <servlet-class>servlet.coordenador.VerProfessores</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>verProfessores</servlet-name>
+        <url-pattern>/coordenador/verProfessores</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>verAlunos</servlet-name>
+        <servlet-class>servlet.coordenador.VerAlunos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>verAlunos</servlet-name>
+        <url-pattern>/coordenador/verAlunos</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>editarAluno</servlet-name>
+        <servlet-class>servlet.coordenador.EditarAluno</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editarAluno</servlet-name>
+        <url-pattern>/coordenador/editarAluno</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>alunoEditado</servlet-name>
+        <servlet-class>servlet.coordenador.AlunoEditado</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>alunoEditado</servlet-name>
+        <url-pattern>/coordenador/alunoEditado</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>apagarAluno</servlet-name>
+        <servlet-class>servlet.coordenador.ApagarAluno</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>apagarAluno</servlet-name>
+        <url-pattern>/coordenador/apagarAluno</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.Aluno" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,10 +15,9 @@
     </head>
     <body>
         <%@include file= "menuCoordenador.jsp" %>
-        <% Aluno a = (Aluno)request.getAttribute("aluno");%>
         <div class="corpo">
-            Nome: <%= a.getNome() %>
-            Login <%= a.getLogin() %>
+            <h1>Cadastrado <%= request.getAttribute("nome")%></h1>
+            <h1>Login: <%= request.getAttribute("login")%></h1>
         </div>
         
     </body>
