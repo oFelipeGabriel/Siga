@@ -19,6 +19,7 @@
         <%@include file= "menuCoordenador.jsp" %>
         <% List<Aluno> alunos = (List<Aluno>)request.getAttribute("alunos"); %>
         <div class="corpo">
+            <a href="cadastrarAluno">Novo Aluno</a>
             <div class="listaAluno">
                 <table>
                 <%for(Aluno a:alunos){ %>            

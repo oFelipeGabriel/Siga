@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet.aluno;
+package servlet.coordenador.professor;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -14,16 +14,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Horarios extends HttpServlet {
+/**
+ *
+ * @author felipe
+ */
+public class CadastrarProfessor extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res){
-        ServletContext sc = req.getServletContext();
+       ServletContext sc = req.getServletContext();
         try {
-            sc.getRequestDispatcher("/dinamico/jsp/aluno/horarios.jsp").forward(req, res);
+            sc.getRequestDispatcher("/dinamico/jsp/coordenador/cadastrarProfessor.jsp").forward(req, res);
         } catch (ServletException ex) {
-            Logger.getLogger(Horarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastrarProfessor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Horarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastrarProfessor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

@@ -4,42 +4,7 @@
         Siga - sistema integrado de gestão acadêmica 
     </description>
     <display-name>Siga</display-name>
-    <servlet>
-        <servlet-name>Inicio</servlet-name>
-        <servlet-class>servlet.base.Inicio</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>HistoricoAluno</servlet-name>
-        <servlet-class>servlet.aluno.HistoricoAluno</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Horarios</servlet-name>
-        <servlet-class>servlet.aluno.Horarios</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Notas</servlet-name>
-        <servlet-class>servlet.aluno.Notas</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Faltas</servlet-name>
-        <servlet-class>servlet.aluno.Faltas</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>horarios</servlet-name>
-        <servlet-class>servlet.professor.horarios</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>notas</servlet-name>
-        <servlet-class>servlet.professor.notas</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>chamada</servlet-name>
-        <servlet-class>servlet.professor.chamada</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Inicio</servlet-name>
-        <url-pattern>/Inicio</url-pattern>
-    </servlet-mapping>
+    
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>servlet.base.Login</servlet-class>
@@ -48,18 +13,43 @@
         <servlet-name>Login</servlet-name>
         <url-pattern/>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Inicio</servlet-name>
+        <servlet-class>servlet.base.Inicio</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Inicio</servlet-name>
+        <url-pattern>/Inicio</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>HistoricoAluno</servlet-name>
+        <servlet-class>servlet.aluno.HistoricoAluno</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HistoricoAluno</servlet-name>
         <url-pattern>/HistoricoAluno</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Horarios</servlet-name>
+        <servlet-class>servlet.aluno.Horarios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Horarios</servlet-name>
         <url-pattern>/Horarios</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Notas</servlet-name>
+        <servlet-class>servlet.aluno.Notas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Notas</servlet-name>
         <url-pattern>/Notas</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Faltas</servlet-name>
+        <servlet-class>servlet.aluno.Faltas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faltas</servlet-name>
         <url-pattern>/Faltas</url-pattern>
@@ -72,21 +62,36 @@
         <servlet-name>Matricula</servlet-name>
         <url-pattern>/Matricula</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>profHorarios</servlet-name>
+        <servlet-class>servlet.professor.Horarios</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>horarios</servlet-name>
+        <servlet-name>profHorarios</servlet-name>
         <url-pattern>/professor/horarios</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>profNotas</servlet-name>
+        <servlet-class>servlet.professor.Notas</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>notas</servlet-name>
+        <servlet-name>profNotas</servlet-name>
         <url-pattern>/professor/notas</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>profChamada</servlet-name>
+        <servlet-class>servlet.professor.Chamada</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>chamada</servlet-name>
+        <servlet-name>profChamada</servlet-name>
         <url-pattern>/professor/chamada</url-pattern>
     </servlet-mapping>
+    
+    
     <servlet>
         <servlet-name>cadastrarAluno</servlet-name>
-        <servlet-class>servlet.coordenador.CadastrarAluno</servlet-class>
+        <servlet-class>servlet.coordenador.aluno.CadastrarAluno</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>cadastrarAluno</servlet-name>
@@ -94,7 +99,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>cadastrarProfessor</servlet-name>
-        <servlet-class>servlet.coordenador.CadastrarProfessor</servlet-class>
+        <servlet-class>servlet.coordenador.professor.CadastrarProfessor</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>cadastrarProfessor</servlet-name>
@@ -102,7 +107,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>alunoCadastrado</servlet-name>
-        <servlet-class>servlet.coordenador.AlunoCadastrado</servlet-class>
+        <servlet-class>servlet.coordenador.aluno.AlunoCadastrado</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>alunoCadastrado</servlet-name>
@@ -110,7 +115,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>professorCadastrado</servlet-name>
-        <servlet-class>servlet.coordenador.ProfessorCadastrado</servlet-class>
+        <servlet-class>servlet.coordenador.professor.ProfessorCadastrado</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>professorCadastrado</servlet-name>
@@ -118,7 +123,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>verProfessores</servlet-name>
-        <servlet-class>servlet.coordenador.VerProfessores</servlet-class>
+        <servlet-class>servlet.coordenador.professor.VerProfessores</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>verProfessores</servlet-name>
@@ -126,7 +131,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>verAlunos</servlet-name>
-        <servlet-class>servlet.coordenador.VerAlunos</servlet-class>
+        <servlet-class>servlet.coordenador.aluno.VerAlunos</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>verAlunos</servlet-name>
@@ -134,7 +139,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>editarAluno</servlet-name>
-        <servlet-class>servlet.coordenador.EditarAluno</servlet-class>
+        <servlet-class>servlet.coordenador.aluno.EditarAluno</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>editarAluno</servlet-name>
@@ -142,7 +147,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>alunoEditado</servlet-name>
-        <servlet-class>servlet.coordenador.AlunoEditado</servlet-class>
+        <servlet-class>servlet.coordenador.aluno.AlunoEditado</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>alunoEditado</servlet-name>
@@ -150,10 +155,26 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>apagarAluno</servlet-name>
-        <servlet-class>servlet.coordenador.ApagarAluno</servlet-class>
+        <servlet-class>servlet.coordenador.aluno.ApagarAluno</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>apagarAluno</servlet-name>
         <url-pattern>/coordenador/apagarAluno</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Materias</servlet-name>
+        <servlet-class>servlet.coordenador.VerMaterias</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Materias</servlet-name>
+        <url-pattern>/coordenador/materias</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CadastrarMateria</servlet-name>
+        <servlet-class>servlet.coordenador.CadastrarMateria</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CadastrarMateria</servlet-name>
+        <url-pattern>/coordenador/cadastrarMateria</url-pattern>
     </servlet-mapping>
 </web-app>

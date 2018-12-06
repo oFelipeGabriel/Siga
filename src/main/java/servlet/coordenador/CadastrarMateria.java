@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet.aluno;
+package servlet.coordenador;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,40 +16,31 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Horario;
+import modelo.Professor;
 
-public class Matricula extends HttpServlet {
+public class CadastrarMateria extends HttpServlet {
     
     ServletContext sc;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
     EntityManager em = emf.createEntityManager();
     Query query;
     
+    protected void processRequest(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {}
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         sc = req.getServletContext();
-        query = em.createQuery("SELECT h FROM HORARIO h ORDER BY h.semestre, h.diaSemana, h.horario", Horario.class);
-        List<Horario> horarios = query.getResultList();
-        for(Horario h: horarios){
-            System.out.println(h.getMateria().getNome());
-            System.out.println(h.getMateria().getProfessor().getNome());
-        }
-        req.setAttribute("horarios", horarios);
-        
-        try {
-            sc.getRequestDispatcher("/dinamico/jsp/aluno/matricula.jsp").forward(req, res);
-        } catch (ServletException ex) {
-            Logger.getLogger(Matricula.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Matricula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        query = em.createQuery("SELECT p FROM PROFESSOR p", Professor.class);
+        List<Professor> professores = query.getResultList();
+        req.setAttribute("professores", professores);
+        sc.getRequestDispatcher("/dinamico/jsp/coordenador/novaMateria.jsp").forward(req, res);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        
     }
 
 }

@@ -1,9 +1,15 @@
 package modelo;
 
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity(name="ALUNO")
 public class Aluno {    
@@ -27,6 +33,14 @@ public class Aluno {
     private String login;
     @Column(name="senha")
     private String senha;
+    
+    @ManyToMany(cascade={CascadeType.PERSIST}, fetch=FetchType.EAGER)
+    @JoinTable(name="aluno_materia",
+       joinColumns=@JoinColumn(name="id_aluno", 
+                            referencedColumnName="id"),
+       inverseJoinColumns= @JoinColumn(name="id_materia", 
+                            referencedColumnName="id"))
+    private List<Materia> materias;
     
     public Aluno(){}
     public String getNome() {
@@ -104,6 +118,14 @@ public class Aluno {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
     }
     
 }
