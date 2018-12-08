@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet.aluno;
+package servlet.coordenador;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,7 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Horario;
 
-public class Matricula extends HttpServlet {
+
+public class Horarios extends HttpServlet {
     
     ServletContext sc;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
@@ -31,18 +30,17 @@ public class Matricula extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         sc = req.getServletContext();
-        query = em.createQuery("SELECT h FROM HORARIO h ORDER BY h.semestre, h.diaSemana, h.horario", Horario.class);
+        String semestreAno;
+        if(req.getParameterMap().containsKey("sAno")){
+            semestreAno = req.getParameter("sAno");
+        }else{
+            semestreAno = "201802";
+        }
+        query = em.createQuery("SELECT h FROM HORARIO h WHERE h.semestreAno='"+semestreAno+"' ORDER BY h.semestre, h.diaSemana, h.horario", Horario.class);
         List<Horario> horarios = query.getResultList();
         
         req.setAttribute("horarios", horarios);
-        
-        try {
-            sc.getRequestDispatcher("/dinamico/jsp/aluno/matricula.jsp").forward(req, res);
-        } catch (ServletException ex) {
-            Logger.getLogger(Matricula.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Matricula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        sc.getRequestDispatcher("/dinamico/jsp/coordenador/horarios.jsp").forward(req, res);
     }
 
     @Override

@@ -6,12 +6,8 @@
 package servlet.coordenador.aluno;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

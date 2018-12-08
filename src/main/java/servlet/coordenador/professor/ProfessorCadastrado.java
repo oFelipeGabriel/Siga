@@ -34,7 +34,6 @@ public class ProfessorCadastrado extends HttpServlet {
             throws ServletException, IOException {
         Professor professor = new Professor();
         String nome = (String) req.getParameter("nome");
-        String email = (String) req.getParameter("email");
         String data_inicio = dataAtualForm.format(agora);
         String login = (String) req.getParameter("login");
         String senha = (String) req.getParameter("senha");
@@ -55,7 +54,7 @@ public class ProfessorCadastrado extends HttpServlet {
         ServletContext sc = req.getServletContext();
         req.setAttribute("nome", nome);
         req.setAttribute("login", login);
-        sc.getRequestDispatcher("/dinamico/jsp/coordenador/alunoCadastrado.jsp").forward(req, res);
+        sc.getRequestDispatcher("/dinamico/jsp/coordenador/professorCadastrado.jsp").forward(req, res);
         
         
     }

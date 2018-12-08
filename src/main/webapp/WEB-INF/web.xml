@@ -130,6 +130,22 @@
         <url-pattern>/coordenador/verProfessores</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>EditarProfessor</servlet-name>
+        <servlet-class>servlet.coordenador.professor.EditarProfessor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditarProfessor</servlet-name>
+        <url-pattern>/coordenador/editarProfessor</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProfessorEditado</servlet-name>
+        <servlet-class>servlet.coordenador.professor.ProfessorEditado</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfessorEditado</servlet-name>
+        <url-pattern>/coordenador/professorEditado</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>verAlunos</servlet-name>
         <servlet-class>servlet.coordenador.aluno.VerAlunos</servlet-class>
     </servlet>
@@ -177,4 +193,52 @@
         <servlet-name>CadastrarMateria</servlet-name>
         <url-pattern>/coordenador/cadastrarMateria</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>MateriaCadastrada</servlet-name>
+        <servlet-class>servlet.coordenador.MateriaCadastrada</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MateriaCadastrada</servlet-name>
+        <url-pattern>/coordenador/materiaCadastrada</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditarMateria</servlet-name>
+        <servlet-class>servlet.coordenador.EditarMateria</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditarMateria</servlet-name>
+        <url-pattern>/coordenador/editarMateria</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MateriaEditada</servlet-name>
+        <servlet-class>servlet.coordenador.MateriaEditada</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MateriaEditada</servlet-name>
+        <url-pattern>/coordenador/materiaEditada</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Horarios</servlet-name>
+        <servlet-class>servlet.coordenador.Horarios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Horarios</servlet-name>
+        <url-pattern>/coordenador/horarios</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CadastrarHorario</servlet-name>
+        <servlet-class>servlet.coordenador.CadastrarHorario</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CadastrarHorario</servlet-name>
+        <url-pattern>/coordenador/cadastrarHorario</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HorarioCadastrado</servlet-name>
+        <servlet-class>servlet.coordenador.HorarioCadastrado</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HorarioCadastrado</servlet-name>
+        <url-pattern>/coordenador/horarioCadastrado</url-pattern>
+    </servlet-mapping> 
 </web-app>

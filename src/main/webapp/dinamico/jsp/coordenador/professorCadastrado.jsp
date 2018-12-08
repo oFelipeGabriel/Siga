@@ -1,9 +1,3 @@
-<%-- 
-    Document   : cadastrarAluno
-    Created on : 30/11/2018, 17:15:01
-    Author     : felipe
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

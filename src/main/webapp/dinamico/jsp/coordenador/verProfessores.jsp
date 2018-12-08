@@ -21,11 +21,15 @@
         <div class="corpo">
             <a href="cadastrarProfessor">Novo Professor</a>
             <div class="listaProfessor">
-                <ul>
+                <table>
                 <%for(Professor p:professores){ %>            
-                    <li class="nomeProfessor">Nome: <%= p.getNome() %></li>
+                <tr>
+                    <td>Nome: <%= p.getNome() %></td>
+                    <td><a href="editarProfessor?id=<%= p.getId() %>">Editar</a></td>
+                    <td><a href="apagarProfessor?id=<%= p.getId() %>">Apagar</a></td>
+                </tr>
                  <% } %>
-                </ul>
+                </table>
             </div>
            
         

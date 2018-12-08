@@ -13,9 +13,11 @@
         <%@include file= "menuCoordenador.jsp" %>
         <div class="corpo">
             <% List<Professor> professores = (List<Professor>)request.getAttribute("professores"); %>
-            <form action="professorCadastrado" method="POST">
+            <form action="materiaCadastrada" method="POST">
                 <span>Nome: </span>
                 <input type="text" name="nome"><br/>
+                <span>Código </span>
+                <input type="text" name="codigo"><br/>
                 <span>Professor: </span>
                 <select name="idProfessor">
                     <% for(Professor p:professores){ %>
@@ -28,9 +30,11 @@
                 <input type="text" name="semestreAno"><br/>
                 <span>Turma: </span>
                  <select name="turma">
-                    <option value="A">A</option>
+                     <option value="A" selected>A</option>
                     <option value="B">B</option>
                 </select> 
+                <span>Quantidade de aulas por semana: </span>
+                <input type="number" name="aulasSemana"><br/>
                 <input type="submit" value="enviar">
             </form>
         </div>

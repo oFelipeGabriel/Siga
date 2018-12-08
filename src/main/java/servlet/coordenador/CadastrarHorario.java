@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet.aluno;
+package servlet.coordenador;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,9 +16,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Horario;
+import modelo.Materia;
 
-public class Matricula extends HttpServlet {
+
+public class CadastrarHorario extends HttpServlet {
     
     ServletContext sc;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
@@ -30,25 +29,21 @@ public class Matricula extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        sc = req.getServletContext();
-        query = em.createQuery("SELECT h FROM HORARIO h ORDER BY h.semestre, h.diaSemana, h.horario", Horario.class);
-        List<Horario> horarios = query.getResultList();
-        
-        req.setAttribute("horarios", horarios);
-        
-        try {
-            sc.getRequestDispatcher("/dinamico/jsp/aluno/matricula.jsp").forward(req, res);
-        } catch (ServletException ex) {
-            Logger.getLogger(Matricula.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Matricula.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         sc = req.getServletContext();
+         String semestre = req.getParameter("s");
+         query = em.createQuery("SELECT m FROM MATERIA m WHERE m.semestreCurso='"+semestre+"'", Materia.class);
+         List<Materia> materias = query.getResultList();
+         req.setAttribute("materias", materias);
+         req.setAttribute("semestre", semestre);
+         sc.getRequestDispatcher("/dinamico/jsp/coordenador/cadastrarHorario.jsp").forward(req, res);
     }
 
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         
     }
+
 
 }

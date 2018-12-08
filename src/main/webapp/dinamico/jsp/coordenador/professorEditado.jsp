@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.Aluno" %>
+<%@page import="modelo.Professor" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,11 +10,10 @@
     </head>
     <body>
         <%@include file= "menuCoordenador.jsp" %>
-        <% Aluno a = (Aluno)request.getAttribute("aluno"); %>
+        <% Professor p = (Professor) request.getAttribute("professor"); %>
         <div class="corpo">            
-            <h1><%= a.getNome() %></h1>
-            <h1><%= a.getEmail() %></h1>
-            <h1><%= a.getCpf() %></h1>
+            <h1><%= p.getNome() %></h1>
+            <h1><%= p.getLogin() %></h1>
         </div>
         
     </body>

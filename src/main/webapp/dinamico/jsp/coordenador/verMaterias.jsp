@@ -15,14 +15,14 @@
         <%@include file= "menuCoordenador.jsp" %>
         <% List<Materia> materias = (List<Materia>)request.getAttribute("materias"); %>
         <div class="corpo">
-            <a href="/Siga/coordenador/cadastrarMateria">Nova Materias</a>
+            <a href="/Siga/coordenador/cadastrarMateria">Nova Materia</a>
             <table>
                 <%for(Materia m:materias){ %>            
                 <tr class="nomeAluno">
                     <td><%= m.getNome() %><br/>
                     <%= m.getProfessor().getNome() %></td>
-                    <td><a href="/Siga/coordenador/editarAluno?id=<%= m.getId() %>">Editar</a></td>
-                    <td><a href="/Siga/coordenador/apagarAluno?id=<%= m.getId() %>">Apagar</a></td>                    
+                    <td><a href="/Siga/coordenador/editarMateria?id=<%= m.getId() %>">Editar</a></td>
+                    <td><a href="/Siga/coordenador/apagarMateria?id=<%= m.getId() %>">Apagar</a></td>                    
                 </tr>
                  <% } %>
                 </table>
