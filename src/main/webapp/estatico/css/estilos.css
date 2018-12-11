@@ -195,3 +195,14 @@ body{
     padding: 10px 10px;
     width: 25%;
 }
+
+.materiaHorarioMat{
+    background-color: #057dcd;
+    margin: 10px 5%;
+    color: #e8eef1;
+    padding: 10px 10px;
+    width: 95%;
+}
+.materiaAprovado{
+    background-color: white;
+}

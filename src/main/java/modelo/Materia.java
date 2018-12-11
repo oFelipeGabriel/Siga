@@ -5,12 +5,15 @@
  */
 package modelo;
 
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity(name="MATERIA")
@@ -35,6 +38,17 @@ public class Materia {
 
     public Materia() {   }
 
+    public Materia(String nome, String codigo,Professor professor, int semestreCurso, int semestreAno, String turma, int aulasSemana) {
+        this.nome = nome;
+        this.codigo = codigo;
+        this.professor = professor;
+        this.semestreCurso = semestreCurso;
+        this.semestreAno = semestreAno;
+        this.turma = turma;
+        this.aulasSemana = aulasSemana;
+    }
+    
+    
     public int getId() {
         return id;
     }

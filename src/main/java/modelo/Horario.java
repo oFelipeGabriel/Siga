@@ -26,7 +26,9 @@ public class Horario {
     private String horario;
     @Column(name="semestre")
     private int semestre;
-
+    @Column(name="semestre_ano")
+    private int semestreAno;
+    
     public Horario() {  }
 
     public long getId() {
@@ -67,6 +69,14 @@ public class Horario {
 
     public void setSemestre(int semestre) {
         this.semestre = semestre;
+    }
+
+    public int getSemestreAno() {
+        return semestreAno;
+    }
+
+    public void setSemestreAno(int semestreAno) {
+        this.semestreAno = semestreAno;
     }
     
     

@@ -2,6 +2,8 @@
 <%@page import="modelo.Materia" %>
 <%@page import="modelo.Professor" %>
 <%@page import="modelo.Horario" %>
+<%@page import="modelo.Aluno" %>
+<%@page import="modelo.Matricula" %>
 <%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
@@ -14,10 +16,18 @@
     <body>
         <%@include file= "menu.jsp" %>
         <% List<Horario> horarios = (List<Horario>)request.getAttribute("horarios");
-        int semestre = 0; 
+        List<Matricula> matriculas = (List<Matricula>)request.getAttribute("matricula");
+        Aluno a = (Aluno)request.getAttribute("aluno");
+        int semestre = 0;
+        String classeApro = "materiaHorarioMat";
         int dia = 1;%>
         <div class="corpo">
             <% for(Horario h:horarios){
+                classeApro = "materiaHorarioMat";
+                    for(Matricula m:matriculas){
+                        if(m.getMateria().getId()==h.getMateria().getId()){
+                            classeApro = "materiaHorarioMat materiaAprovado";
+                        } }
                 if(semestre==0){ 
                     semestre = 1; %>                    
                     <div class="divSemestre">
@@ -38,14 +48,20 @@
                             dia = h.getDiaSemana();%>
                             </div>
                             <div class="divDiaSemana">
-                        <% } else { %>
-                            <div class="materiaHorario">
+                        <% }%>
+                        <div class="<%= classeApro %> <%= h.getMateria().getCodigo() %>" onclick="mostrarClasse('<%= h.getMateria().getCodigo() %>');">
                             <h5><%= h.getMateria().getNome() %></h5>
                             <h5><%= h.getMateria().getProfessor().getNome() %></h5>
                             </div>
                             <% } %> 
-                            <% } } %>
+                            <% } %>
                     </div>
                     </div></div>
+                    <script>
+                        function mostrarClasse(div){
+                            //alert(div);
+                        }
+                    </script>
     </body>
+    
 </html>

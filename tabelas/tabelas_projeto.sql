@@ -7,11 +7,9 @@ ALTER TABLE PROFESSOR AUTO_INCREMENT=15;
 CREATE TABLE `MATERIA` ( `id` INT(10) PRIMARY KEY AUTO_INCREMENT, `codigo` VARCHAR(10) NOT NULL , `nome` VARCHAR(50) NOT NULL , `id_professor` INT(10) NOT NULL , `semestre_curso` INT(1) NOT NULL, `semestre_ano` INT(6) NOT NULL,turma varchar(1));
 alter TABLE MATERIA add column aulas_semana int(1);
 
-CREATE TABLE `ALUNO_MATERIA` ( `id_aluno` INT(10) NOT NULL , `id_materia` INT(10) NOT NULL , `semestre` INT(6) NOT NULL, PRIMARY KEY (`id_aluno`,`id_materia`,`semestre`) );
-ALTER TABLE ALUNO_MATERIA add column nota_p1 float(4,2);
-ALTER TABLE ALUNO_MATERIA add column nota_p2 float(4,2)
-ALTER TABLE ALUNO_MATERIA ADD FOREIGN KEY (id_aluno) REFERENCES ALUNO(id);
-ALTER TABLE ALUNO_MATERIA ADD FOREIGN KEY (id_materia) REFERENCES MATERIA(id);
+CREATE TABLE `MATRICULA` ( `id` INT(10) PRIMARY KEY AUTO_INCREMENT,`id_aluno` INT(10) NOT NULL , `id_materia` INT(10) NOT NULL , `semestre` INT(6) NOT NULL, nota_p1 float(4,2), nota_p2 float(4,2),media float(4,2),situacao VARCHAR(10) );
+ALTER TABLE MATRICULA ADD FOREIGN KEY (id_aluno) REFERENCES ALUNO(id);
+ALTER TABLE MATRICULA ADD FOREIGN KEY (id_materia) REFERENCES MATERIA(id);
 
 CREATE TABLE `COORDENADOR` ( `id` INT PRIMARY KEY AUTO_INCREMENT , `nome` VARCHAR(50) NOT NULL , `login` VARCHAR(50) NOT NULL , `senha` INT(12) NOT NULL );
 

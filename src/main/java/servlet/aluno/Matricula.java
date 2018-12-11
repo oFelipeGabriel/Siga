@@ -18,6 +18,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.Aluno;
 import modelo.Horario;
 
 public class Matricula extends HttpServlet {
@@ -27,14 +29,21 @@ public class Matricula extends HttpServlet {
     EntityManager em = emf.createEntityManager();
     Query query;
     
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
+        HttpSession sessao = req.getSession();
+        Aluno a = (Aluno)sessao.getAttribute("usuario");
         sc = req.getServletContext();
         query = em.createQuery("SELECT h FROM HORARIO h ORDER BY h.semestre, h.diaSemana, h.horario", Horario.class);
         List<Horario> horarios = query.getResultList();
+        query = em.createQuery("SELECT m FROM MATRICULA m WHERE id_aluno='"+String.valueOf(a.getId())+"'");
+        List<Matricula> m = query.getResultList();
         
         req.setAttribute("horarios", horarios);
+        req.setAttribute("aluno", a);
+        req.setAttribute("matricula", m);
         
         try {
             sc.getRequestDispatcher("/dinamico/jsp/aluno/matricula.jsp").forward(req, res);
