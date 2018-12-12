@@ -23,7 +23,7 @@
                 <a href="cadastrarHorario?s=3"> 3º Semestre </a>
                 <a href="cadastrarHorario?s=4"> 4º Semestre </a>
                 <a href="cadastrarHorario?s=5"> 5º Semestre </a>
-                <a href="cadastrarHorario?s=6"> 6º Semestre </a></span>
+                <a href="cadastrarHorario?s=6"> 6º Semestre </a></span><br/>
             <% for(Horario h:horarios){
                 if(semestre==0){ 
                     semestre = 1; %>                    
@@ -46,7 +46,7 @@
                             </div>
                             <div class="divDiaSemana">
                         <% } else { %>
-                            <div class="materiaHorario">
+                            <div class="materiaHorarioMat">
                             <h5><%= h.getMateria().getNome() %></h5>
                             <h5><%= h.getMateria().getProfessor().getNome() %></h5>
                             </div>

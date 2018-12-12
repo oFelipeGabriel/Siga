@@ -36,7 +36,7 @@ public class Matricula extends HttpServlet {
         HttpSession sessao = req.getSession();
         Aluno a = (Aluno)sessao.getAttribute("usuario");
         sc = req.getServletContext();
-        query = em.createQuery("SELECT h FROM HORARIO h ORDER BY h.semestre, h.diaSemana, h.horario", Horario.class);
+        query = em.createQuery("SELECT h FROM HORARIO h ORDER BY h.semestre ASC, h.diaSemana ASC, h.horario ASC", Horario.class);
         List<Horario> horarios = query.getResultList();
         query = em.createQuery("SELECT m FROM MATRICULA m WHERE id_aluno='"+String.valueOf(a.getId())+"'");
         List<Matricula> m = query.getResultList();

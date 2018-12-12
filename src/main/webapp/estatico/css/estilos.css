@@ -201,8 +201,13 @@ body{
     margin: 10px 5%;
     color: #e8eef1;
     padding: 10px 10px;
-    width: 95%;
+    width: 85%;
+    display: block;
 }
 .materiaAprovado{
     background-color: white;
+}
+.divSemestre{
+    width: 260px;
+    float: left;
 }

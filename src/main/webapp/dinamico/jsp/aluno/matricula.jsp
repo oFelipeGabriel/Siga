@@ -20,48 +20,60 @@
         Aluno a = (Aluno)request.getAttribute("aluno");
         int semestre = 0;
         String classeApro = "materiaHorarioMat";
-        int dia = 1;%>
+        String[] dias = {"Seguda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira"};
+        int sem = 1;%>
         <div class="corpo">
-            <% for(Horario h:horarios){
-                classeApro = "materiaHorarioMat";
+            <form>
+                            <input type="text" id="materiasEscolhidas">
+                        </form>
+            <div class="divSemestre">
+                <h4>Semestre 1</h4>
+                <% for(Horario h:horarios){
+                    if(h.getMateria().getSemestreCurso()>sem){
+                        sem = h.getMateria().getSemestreCurso();
+                        %></div><div class="divSemestre">
+                            <h4>Semestre <%= sem %></h4>
+                         <%}
                     for(Matricula m:matriculas){
-                        if(m.getMateria().getId()==h.getMateria().getId()){
-                            classeApro = "materiaHorarioMat materiaAprovado";
-                        } }
-                if(semestre==0){ 
-                    semestre = 1; %>                    
-                    <div class="divSemestre">
-                     <h4>Semestre <%= h.getMateria().getSemestreCurso() %></h4><% }
-                if(h.getMateria().getSemestreCurso()!=semestre){ %>
+                        if(m.getMateria().getCodigo().equals(h.getMateria().getCodigo())){
+                %><div class="materiaHorarioMat materiaAprovado">
+                <%
+                        }else{
+                    %><div class="materiaHorarioMat <%= h.getMateria().getCodigo() %> <%= h.getDiaSemana() %><%= h.getHorario() %>" 
+                    onclick="mostrarClasse('<%= h.getMateria().getCodigo() %>')"><%
+                        }%>
+                        <a>Materia: <%= h.getMateria().getNome() %></a><br>
+                        <a>Professor: <%= h.getMateria().getProfessor().getNome() %></a><br>
+                        <a><%= dias[h.getDiaSemana()-2] %></a><br>
+                        <a><%= h.getHorario() %></a></div>
+                    <% }
+                }%>
                     </div>
-                    <div class="divSemestre">
-                    <h4>Semestre <%= h.getMateria().getSemestreCurso() %></h4>
+                        </div>
                     
-                <% }
-                 else{  
-                        if(dia<2){ 
-                            dia = h.getDiaSemana();
-                            %>
-                        <div class="divDiaSemana">
-                        <%}
-                        if(dia!=h.getDiaSemana()){
-                            dia = h.getDiaSemana();%>
-                            </div>
-                            <div class="divDiaSemana">
-                        <% }%>
-                        <div class="<%= classeApro %> <%= h.getMateria().getCodigo() %>" onclick="mostrarClasse('<%= h.getMateria().getCodigo() %>');">
-                            <h5><%= h.getMateria().getNome() %></h5>
-                            <h5><%= h.getMateria().getProfessor().getNome() %></h5>
-                            </div>
-                            <% } %> 
-                            <% } %>
-                    </div>
-                    </div></div>
                     <script>
-                        function mostrarClasse(div){
-                            //alert(div);
+                        
+                        function mostrarClasse(cod){
+                            var i;
+                            var materia;
+                            var materias = document.getElementsByClassName(cod);
+                            
+                            for(i=0;i<materias.length;i++){
+                                var h = materias[i].getAttribute("class").split(" ");
+                                var m = document.getElementsByClassName(h[2]);
+                                for(var k=0;k<m.length;k++){
+                                    if(m[k].getAttribute("class").includes(cod)){
+                                    m[k].style.backgroundColor = "green";
+                                }else{
+                                    m[k].style.backgroundColor = "red";
+                                }
+                                }
+                            }
+                            var mats = document.getElementById("materiasEscolhidas");
+                            mats.value = mats.value+";"+cod;
                         }
                     </script>
+                    
     </body>
     
 </html>
