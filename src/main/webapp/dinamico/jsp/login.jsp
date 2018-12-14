@@ -16,21 +16,24 @@
     </head>
     <body>
         <div class="conteudoLogin">
-            <div class="imagemLogin">SIGA</div>
+            <div class="imagemLogin" id="sigaLogo">SIGA</div>
             <div class="campoLogin">
             <form action="/Siga/Inicio" method="post">
-                usuario:<br><input type="text" name="usuario"></br>
-                senha:<br><input type="password" name="senha"></br>
+                usuario:<br><input class="campoEntrada" type="text" name="usuario"></br>
+                senha:<br><input class="campoEntrada" type="password" name="senha"></br>
             <input type="submit" value="->">
+                    </form>
+
             </div>
             
-        </form>
         </div>
         
         <c:choose>
             <c:when test="${requestScope.FalhouLogin=='sim'}">
-                <h3>Falhou Login</h3>
+                <h3 id="falhouLogin">Falha no login</h3>
             </c:when>
         </c:choose>
+                <script src="estatico/js/javascript.js">
+                    </script>
     </body>
 </html>

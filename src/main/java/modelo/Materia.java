@@ -24,7 +24,7 @@ public class Materia {
     private String codigo;
     @Column(name="nome")
     private String nome;
-    @ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+    @ManyToOne(fetch=FetchType.EAGER, cascade={CascadeType.ALL})
     @JoinColumn(name="id_professor")
     private Professor professor;
     @Column(name="semestre_curso")

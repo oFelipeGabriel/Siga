@@ -17,10 +17,10 @@ import javax.persistence.ManyToOne;
 public class Matricula {
     @Id
     private int id;
-    @ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name="id_aluno")
     private Aluno aluno;
-    @ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name="id_materia")
     private Materia materia;
     @Column(name="semestre")
@@ -35,6 +35,7 @@ public class Matricula {
     private String situacao;
     
     public Matricula() {  }
+    
 
     public int getId() {
         return id;

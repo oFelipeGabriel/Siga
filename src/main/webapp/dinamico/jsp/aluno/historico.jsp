@@ -1,19 +1,33 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modelo.Horario" %>
+<%@page import="modelo.Materia" %>
+<%@page import="modelo.Matricula" %>
+<%@page import="modelo.Professor" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="estatico/css/estilos.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
         <title>Siga - Histórico</title>
     </head>
     <body>
         <%@include file= "menu.jsp" %>
+        <% List<Matricula> materiasMatriculadas = (List<Matricula>)request.getAttribute("matriculas"); 
+        ArrayList<Materia> materias = (ArrayList<Materia>)request.getAttribute("materias");
+        String classe = "materia naoCursado";
+        String situacao = "Não Cursado";
+        String nf = "";
+        String fe = "";
+        String pe = "201802";
+        int semestre = 0;%>
         <div class="corpo">
             <div class="conteudo">
         <span class="titulo">HISTÓRICO</span>
         <div class='divLegendaHist'>
-        <span id="legendaHistorico">NF: nota final FR: frequência (%) PE: períoso (ano/semestre)</span>
+        <span id="legendaHistorico">NF: nota final FR: frequência (%) PE: período (ano/semestre)</span>
         <ul id="coresLegendaHistorico">
             <li id="aprovado">Aprovado</li>
             <li id="naoCursado">Não Cursada</li>
@@ -21,213 +35,42 @@
             <li id="dispensado">Dispensado</li>
         </ul>
         </div>
-        </div><!-- div conteudo -->
+        </div><!-- div conteudo --><br/>
         <div class='materiasHistorico'>
-        <div class="divSemestre">
-            <span class="tituloSemestre">Semestre 1</span>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Administração Geral</p>
-                <p>Aprovado<br>NF: 8.4<br>FR: 100%<br>PE: 201601</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Arquitetura e Organização de Computadores</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201601</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Matemática Discreta</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201601</p>
-            </div>
-            <div class="materia dispensado">
-                <p class="nomeMateria">Inglês I</p>
-                <p>Dispensado<br>NF: 8.0<br>FR: 100%<br>PE: 201601</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Programação em Microinformática</p>
-                <p>Dispensado<br>NF: 8.0<br>FR: 100%<br>PE: 201601</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Laboratório de Hardware</p>
-                <p>Dispensado<br>NF: 8.0<br>FR: 100%<br>PE: 201601</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Algoritmos e Lógica de Programação</p>
-                <p>Dispensado<br>NF: 8.0<br>FR: 100%<br>PE: 201601</p>
-            </div>
+        
+            
+            <% for(Materia m:materias){
+                if(m.getSemestreCurso()!=semestre){ 
+                    if(m.getSemestreCurso()>1){%>
+                        </div> <% } %>
+                <div class="divSemestre">
+                <span class="tituloSemestre">Semestre <%= m.getSemestreCurso() %></span>
+                <% semestre = m.getSemestreCurso();}
+                pe = String.valueOf(m.getSemestreCurso());
+                if(m.getSemestreCurso()==semestre){
+                        for(Matricula mt:materiasMatriculadas){ 
+                            if(mt.getMateria().getNome().equals(m.getNome())){
+                                switch(mt.getSituacao()){
+                                    case "Aprovado":classe="materia aprovado";break;
+                                    case "Em Curso":classe="materia emCurso";break;
+                                    case "Reprovado":classe="materia reprovado";break;
+                                    case "Dispensado":classe="materia dispensado";break;
+                                }
+                                situacao = mt.getSituacao();
+                                pe = mt.getSemestre();
+                            }
+                        }
+                     %>
+                
+                <div class="<%= classe %>">
+                    <p class="nomeMateria"><%= m.getNome() %></p>
+                    <p><%= situacao %><br>NF: <%= nf %><br>FR:  <br>PE: <%= String.valueOf(pe) %></p>
+                </div>
+            <% } classe = "materia naoCursado"; situacao = "Não Cursado"; nf = "";  } %>          
             
         </div>
-        <div class="divSemestre">
-            <span class="tituloSemestre">Semestre 2</span>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Comunicação e Expressão </p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201602</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Linguagem de Programação</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201602</p>
-            </div>
-            <div class="materia dispensado">
-                <p class="nomeMateria">Inglês II</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201602</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Sistemas de Informação</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201602</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Cálculo</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201602</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Engenharia de Software I</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201602</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Contabilidade</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 100%<br>PE: 201602</p>
-            </div>
-        </div><!-- div semestre -->
-        <div class="divSemestre">
-            <span class="tituloSemestre">Semestre 3</span>
-            <div class="materia  aprovado">
-                <p class="nomeMateria">Sistemas Operacionais I</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201702</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Sociedade e Tecnologia</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201702</p>
-            </div>
-            <div class="materia  aprovado">
-                <p class="nomeMateria">Estruturas de Dados</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201702</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Engenharia de Software II</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201702</p>
-            </div>
-            <div class="materia  aprovado">
-                <p class="nomeMateria">Programação Orientada a Objetos</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201702</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Economia e Finanças</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201702</p>
-            </div>
-            <div class="materia dispensado">
-                <p class="nomeMateria">Inglês III</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201702</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Interação Humano Computador</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201702</p>
-            </div>
-        </div>
-            <div class="divSemestre">
-            <span class="tituloSemestre">Semestre 4</span>
-            <div class="materia  aprovado">
-                <p class="nomeMateria">Testes de Software</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201801</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Engenharia de Software III</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201801</p>
-            </div>
-            <div class="materia  aprovado">
-                <p class="nomeMateria">Estatística Aplicada</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201801</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Sistemas Operacionais II</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201801</p>
-            </div>
-            <div class="materia  dispensado">
-                <p class="nomeMateria">Inglês IV</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201801</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Banco de Dados</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201801</p>
-            </div>
-            <div class="materia aprovado">
-                <p class="nomeMateria">Metod. da Pesq. Científico-Tecnológica</p>
-                <p>Aprovado<br>NF: 8.0<br>FR: 0%<br>PE: 201801</p>
-            </div>
-        </div>
-        <div class="divSemestre">
-            <span class="tituloSemestre">Semestre 5</span>
-            <div class="materia emCurso">
-                <p class="nomeMateria">Programação para Dispositivos Móveis</p>
-                <p>Em Curso<br>NF: 0.0<br>FR: 00%<br>PE: 201802</p>
-            </div>
-            <div class="materia emCurso">
-                <p class="nomeMateria">Laboratório de Banco de Dados</p>
-                <p>Em Curso<br>NF: 0.0<br>FR: 00%<br>PE: 201802</p>
-            </div>
-            <div class="materia emCurso">
-                <p class="nomeMateria">Laboratório de Engenharia de Software</p>
-                <p>Em Curso<br>NF: 0.0<br>FR: 00%<br>PE: 201802</p>
-            </div>
-            <div class="materia emCurso">
-                <p class="nomeMateria">Redes de Computadores</p>
-                <p>Em Curso<br>NF: 0.0<br>FR: 00%<br>PE: 201802</p>
-            </div>
-            <div class="materia emCurso">
-                <p class="nomeMateria">Programação Linear e Aplicações</p>
-                <p>Em Curso<br>NF: 0.0<br>FR: 00%<br>PE: 201802</p>
-            </div>
-            <div class="materia emCurso">
-                <p class="nomeMateria">Segurança da Informação</p>
-                <p>Em Curso<br>NF: 0.0<br>FR: 00%<br>PE: 201802</p>
-            </div>
-            <div class="materia emCurso">
-                <p class="nomeMateria">Inglês V</p>
-                <p>Em Curso<br>NF: 0.0<br>FR: 00%<br>PE: 201802</p>
-            </div>
-            <div class="materia emCurso">
-                <p class="nomeMateria">Trabalho de Graduação I</p>
-                <p>Em Curso<br>NF: 0.0<br>FR: 00%<br>PE: 201802</p>
-            </div>
-        </div><!-- div semestre -->
-        <div class="divSemestre">
-            <span class="tituloSemestre">Semestre 6</span>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Gestão e Governança de Tec. da Informação</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Tópicos Especiais em Informática</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Trabalho de Graduação II</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Inteligência Artificial</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Empreendedorismo</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Gestão de Projetos</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Ética e Responsabilidade Profissional</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Gestão de Equipes</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-            <div class="materia naoCursado">
-                <p class="nomeMateria">Inglês VI</p>
-                <p><br>NF: <br>FR: <br>PE: </p>
-            </div>
-        </div><!-- div semestre -->
         
-        </div><!-- div semestre -->
+        
         </div><!-- div materias semestre -->
         
         </div><!-- div corpo -->

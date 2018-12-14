@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Aluno;
 
-/**
- *
- * @author felipe
- */
+
 public class AlunoCadastrado extends HttpServlet {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia_simples");        
     EntityManager em = emf.createEntityManager();

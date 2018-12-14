@@ -56,11 +56,27 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Matricula</servlet-name>
-        <servlet-class>servlet.aluno.Matricula</servlet-class>
+        <servlet-class>servlet.aluno.Matricular</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Matricula</servlet-name>
         <url-pattern>/Matricula</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ConfirmarMatricula</servlet-name>
+        <servlet-class>servlet.aluno.ConfirmarMatricula</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConfirmarMatricula</servlet-name>
+        <url-pattern>/confirmarMatricula</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MatriculaConfirmada</servlet-name>
+        <servlet-class>servlet.aluno.MatriculaConfirmada</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MatriculaConfirmada</servlet-name>
+        <url-pattern>/matriculaConfirmada</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -86,6 +102,30 @@
     <servlet-mapping>
         <servlet-name>profChamada</servlet-name>
         <url-pattern>/professor/chamada</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AulaChamada</servlet-name>
+        <servlet-class>servlet.professor.AulaChamada</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AulaChamada</servlet-name>
+        <url-pattern>/professor/aulaChamada</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChamadaOnline</servlet-name>
+        <servlet-class>servlet.professor.ChamadaOnline</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChamadaOnline</servlet-name>
+        <url-pattern>/professor/chamadaOnline</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChamadaConcluida</servlet-name>
+        <servlet-class>servlet.professor.ChamadaConcluida</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChamadaConcluida</servlet-name>
+        <url-pattern>/professor/chamadaConcluida</url-pattern>
     </servlet-mapping>
     
     

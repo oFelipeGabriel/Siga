@@ -23,9 +23,10 @@
         String[] dias = {"Seguda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira"};
         int sem = 1;%>
         <div class="corpo">
-            <form>
-                            <input type="text" id="materiasEscolhidas">
-                        </form>
+                <form action="confirmarMatricula" method="POST">
+                        <input type="text" id="materiasEscolhidas" name="materiasEscolhidas">
+                        <input type="submit" value="Matricular">
+                     </form>
             <div class="divSemestre">
                 <h4>Semestre 1</h4>
                 <% for(Horario h:horarios){
@@ -40,7 +41,7 @@
                 <%
                         }else{
                     %><div class="materiaHorarioMat <%= h.getMateria().getCodigo() %> <%= h.getDiaSemana() %><%= h.getHorario() %>" 
-                    onclick="mostrarClasse('<%= h.getMateria().getCodigo() %>')"><%
+                    onclick="mostrarClasse('<%= h.getMateria().getCodigo() %>','<%= h.getMateria().getId() %>')"><%
                         }%>
                         <a>Materia: <%= h.getMateria().getNome() %></a><br>
                         <a>Professor: <%= h.getMateria().getProfessor().getNome() %></a><br>
@@ -51,27 +52,7 @@
                     </div>
                         </div>
                     
-                    <script>
-                        
-                        function mostrarClasse(cod){
-                            var i;
-                            var materia;
-                            var materias = document.getElementsByClassName(cod);
-                            
-                            for(i=0;i<materias.length;i++){
-                                var h = materias[i].getAttribute("class").split(" ");
-                                var m = document.getElementsByClassName(h[2]);
-                                for(var k=0;k<m.length;k++){
-                                    if(m[k].getAttribute("class").includes(cod)){
-                                    m[k].style.backgroundColor = "green";
-                                }else{
-                                    m[k].style.backgroundColor = "red";
-                                }
-                                }
-                            }
-                            var mats = document.getElementById("materiasEscolhidas");
-                            mats.value = mats.value+";"+cod;
-                        }
+                    <script src="estatico/js/javascript.js">
                     </script>
                     
     </body>

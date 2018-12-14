@@ -14,6 +14,8 @@
     <class>modelo.Aula</class>
     <class>modelo.Horario</class>
     <class>modelo.Matricula</class>
+    <class>modelo.Aula</class>
+    <class>modelo.Presenca</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver" />
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/siga" />

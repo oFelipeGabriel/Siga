@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 public class Horario {
     @Id
     private int id;
-    @ManyToOne(fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+    @ManyToOne(fetch=FetchType.EAGER, cascade={CascadeType.ALL})
     @JoinColumn(name="id_materia")
     private Materia materia;
     @Column(name="dia_semana")
